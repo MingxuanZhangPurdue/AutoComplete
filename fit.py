@@ -218,7 +218,7 @@ if not args.impute_using_saved:
                     yhat = model(masked_data)
                     sind = CONT_BINARY_SPLIT
 
-                    l_cont, l_binary = torch.zeros(1), torch.zeros(1)
+                    l_cont, l_binary = torch.zeros(1).to(args.device), torch.zeros(1).to(args.device)
                     if len(contin_features) != 0:
                         l_cont = cont_crit((yhat*score_inds)[:,:sind], (datarow*score_inds)[:, :sind])
                     if len(binary_features) != 0:
